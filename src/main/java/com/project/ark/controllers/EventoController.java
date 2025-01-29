@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/eventos")
 public class EventoController {
@@ -40,6 +43,15 @@ public class EventoController {
         Evento eventoSalvo = eventoRepository.save(evento);
 
         return eventoMapper.eventoToResponse(eventoSalvo);
+    }
+
+    // Listar eventos
+    @GetMapping
+    public List<EventoResponseDTO> listarEventos() {
+        List<Evento> eventos = eventoRepository.findAll();
+        return eventos.stream()
+                .map(eventoMapper::eventoToResponse)
+                .collect(Collectors.toList());
     }
 
     // Consultar evento por ID
