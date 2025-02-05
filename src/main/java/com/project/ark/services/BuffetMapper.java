@@ -15,12 +15,12 @@ public class BuffetMapper {
         return buffet;
     }
 
-    public static BuffetResponseDTO buffetToResponse(Buffet entity) {
+    public static BuffetResponseDTO buffetToResponse(Buffet buffet) {
         return new BuffetResponseDTO(
-                entity.getId(),
-                entity.getNome(),
-                entity.getEndereco(),
-                entity.getNomeDono()
+                buffet.getId(),
+                buffet.getNome(),
+                buffet.getEndereco(),
+                buffet.getNomeDono()
         );
     }
 }
